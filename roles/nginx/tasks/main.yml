@@ -25,3 +25,9 @@
     state: started
     name: nginx
     enabled: yes
+
+- name: Copy index.html
+  ansible.builtin.copy:
+    src: index.html
+    dest: /usr/share/nginx/html 
+    follow: yes
