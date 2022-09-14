@@ -1,0 +1,6 @@
+---
+# vars file for myrole
+http_host: "{{ ansible_ssh_host }}"
+cpu: "{{ ansible_processor }}"
+ram: "{{ ansible_memory_mb.real.total }}"
+hdd: "{{ ansible_mounts|json_query('[?mount == `/`].size_total') }}"

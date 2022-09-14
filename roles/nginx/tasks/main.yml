@@ -1,0 +1,27 @@
+---
+- name: Install EPEL repo
+  yum: name=epel-release state=present
+  
+- name: Ensure that nginx installed.
+  yum: name=nginx state=latest
+
+- name: Ensure that Firewalld installed
+  yum: name=firewalld state=latest
+
+- name: Start firewalld
+  ansible.builtin.systemd:
+    state: started
+    name: firewalld
+    enabled: yes
+
+- name: Return motd to registered var
+  command: firewall-cmd --permanent --add-service=http
+
+- name: Return motd to registered var
+  command: firewall-cmd --reload
+
+- name: Make sure a service nginx is running and it in autostart
+  ansible.builtin.systemd:
+    state: started
+    name: nginx
+    enabled: yes

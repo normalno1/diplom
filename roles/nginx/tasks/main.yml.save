@@ -1,0 +1,27 @@
+---
+- 
+  remote_user: user
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Install EPEL repo
+    yum: name=epel-release state=present
+  
+  - name: Ensure that nginx installed.
+    yum: name=nginx state=latest
+
+  - name: Make sure a service unit is running and it in autostart
+    ansible.builtin.systemd:
+      state: started
+      name: nginx
+      enabled: yes
+
+  - name: Create directory for virtualhost
+    file: dest=/srv/{{ server_name }} state=directory
+
+  - name: Copy virtualhost config
+    template: src=default.conf dest=/etc/nginx/conf.d/{{ server_name }}.conf
+
+  - name: Copy index.html
+    template: src=index.html dest=/srv/{{ server_name}}/index.html
+    notify: restart nginx

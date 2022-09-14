@@ -1,0 +1,7 @@
+---
+- hosts: terraform
+  become: yes
+  remote_user: user
+  become_method: sudo
+  roles:
+    - nginx
