@@ -302,15 +302,27 @@ resource "yandex_alb_load_balancer" "balancer" {
 }
 
 # Output
-output "internal_ip_address_vm_1" {
+output "internal_ip_nginx1" {
   value = yandex_compute_instance.nginx1.network_interface.0.ip_address
 }
-output "internal_ip_address_vm_2" {
+output "internal_ip_nginx2" {
   value = yandex_compute_instance.nginx2.network_interface.0.ip_address
 }
-output "external_ip_address_vm_1" {
+output "external_ip_nginx1" {
   value = yandex_compute_instance.nginx1.network_interface.0.nat_ip_address
 }
-output "external_ip_address_vm_2" {
+output "external_ip_nginx2" {
   value = yandex_compute_instance.nginx2.network_interface.0.nat_ip_address
+}
+output "internal_ip_prometeus" {
+  value = yandex_compute_instance.prometeus.network_interface.0.ip_address
+}
+output "external_ip_prometeus" {
+  value = yandex_compute_instance.prometeus.network_interface.0.nat_ip_address
+}
+output "internal_ip_grafana" {
+  value = yandex_compute_instance.grafana.network_interface.0.ip_address
+}
+output "external_ip_grafana" {
+  value = yandex_compute_instance.grafana.network_interface.0.nat_ip_address
 }

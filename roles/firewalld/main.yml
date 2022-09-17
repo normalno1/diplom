@@ -1,0 +1,14 @@
+- name: Ensure that Firewalld installed
+  yum: name=firewalld state=latest
+
+- name: Start firewalld
+  ansible.builtin.systemd:
+    state: started
+    name: firewalld
+    enabled: yes
+
+- name: Return motd to registered var
+  command: firewall-cmd --permanent --add-service=http
+
+- name: Return motd to registered var
+  command: firewall-cmd --reload
