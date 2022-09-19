@@ -1,17 +1,16 @@
 ---
-- hosts: nginx
-  become: yes
-  remote_user: user
-  become_method: sudo
-  roles:
-    - nginx
-    - nodeexporter
-    - firewalld
-  #  - nginxexporter
-
-#- hosts: prometeus
+#- hosts: nginx
 #  become: yes
 #  remote_user: user
 #  become_method: sudo
 #  roles:
-#    - prometeus
+#    - nginx
+#    - nodeexporter
+#    - firewalld
+  #  - nginxexporter
+
+- hosts: prometeus
+  remote_user: user
+  become_method: sudo
+  roles:
+    - prometeus
