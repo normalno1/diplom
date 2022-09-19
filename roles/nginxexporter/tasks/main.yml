@@ -1,0 +1,16 @@
+---
+- name: Download nginx exporter
+  get_url:
+    url: https://github.com/martin-helmich/prometheus-nginxlog-exporter/releases/download/v1.9.2/prometheus-nginxlog-exporter_1.9.2_linux_amd64.rpm
+    dest: /tmp/prometheus-nginxlog-exporter_1.9.2_linux_amd64.rpm
+
+- name: Install nginx exporter rpm from a local file
+  ansible.builtin.yum:
+    name: /tmp/prometheus-nginxlog-exporter_1.9.2_linux_amd64.rpm
+    state: present
+
+- name: Make sure a service nginx exporter is running and it in autostart
+  ansible.builtin.systemd:
+    state: started
+    name: prometheus-nginxlog-exporter
+    enabled: yes

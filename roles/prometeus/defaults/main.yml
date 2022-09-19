@@ -67,6 +67,8 @@ prometheus_targets:
     - targets:
         - "{{ hostvars['web1'].ansible_host }}:9100"
         - "{{ hostvars['web2'].ansible_host }}:9100"
+        - "{{ hostvars['web1'].ansible_host }}:4040"
+        - "{{ hostvars['web2'].ansible_host }}:4040"
       labels:
         env: web
 

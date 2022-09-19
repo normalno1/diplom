@@ -1,16 +1,23 @@
 ---
-#- hosts: nginx
-#  become: yes
-#  remote_user: user
-#  become_method: sudo
-#  roles:
-#    - nginx
-#    - nodeexporter
-#    - firewalld
-  #  - nginxexporter
+- hosts: nginx
+  become: yes
+  remote_user: user
+  become_method: sudo
+  roles:
+    - nginxexporter
+    - nginx
+    - nodeexporter
+    - firewalld
+    
 
 - hosts: prometeus
   remote_user: user
   become_method: sudo
   roles:
     - prometeus
+
+- hosts: grafana
+  remote_user: user
+  become_method: sudo
+  roles:
+    - grafana
